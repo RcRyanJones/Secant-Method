@@ -1,0 +1,27 @@
+clear
+clc
+f = @(x) atan(x);
+x0=(10); %input x0 and x1 here
+x1 = (11);
+tolerance = 10^(-10);
+%if f(x0)*f(x1)>0
+ %   disp('Not a valid interval');
+  %  return
+%else
+%i = 0
+    error=abs(x1-x0);
+    for i=1:20
+        x2 = (x0*f(x1)-x1*f(x0))/(f(x1)-f(x0));
+        x0=x1;
+        x1=x2;
+        error = abs(x1-x0);
+        val = x2;
+     %   i=i+1;
+        fprintf('x is: %2.10f', val);
+           if error < tolerance
+            break 
+            end
+          %fprintf('error is: %4.3f', error);
+    end
+    fprintf('The solution is: %4.3f', val);
+%end
